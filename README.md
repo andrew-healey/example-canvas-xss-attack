@@ -1,7 +1,7 @@
 [Link to Repo](https://github.com/Sesamestrong/example-canvas-xss-attack)
 # Example XSS (Cross Site Scripting) Attack on Instructure's Canvas LMS
 ## The Vulnerability
-The XSS Vulnerability, detailed at [CVE-2018-1999024](https://www.cvedetails.com/cve/CVE-2018-1999024/), is due to an outdated version of MathJax with [a vulnerability in the \unicode{} macro](https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html). It allows any malicious user to insert JavaScript into a Rich Text comment using the Rich Text editor; the user simply puts JavaScript into a \unicode{} tag and posts it. The wrapper to write a hiddent XSS script is as follows:
+The XSS Vulnerability, detailed at [CVE-2018-1999024](https://www.cvedetails.com/cve/CVE-2018-1999024/), is due to an outdated version of MathJax with [a vulnerability in the \unicode{} macro](https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html). It allows any malicious user to insert JavaScript into a Rich Text comment using the Rich Text editor; the user simply puts JavaScript into a \unicode{} tag and posts it. The wrapper to write a hidden XSS script is as follows:
 ```
 \phantom{
     \unicode{
