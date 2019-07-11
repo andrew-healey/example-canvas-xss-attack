@@ -1,3 +1,4 @@
+[Link to Repo](https://github.com/Sesamestrong/example-canvas-xss-attack)
 # Example XSS (Cross Site Scripting) Attack on Instructure's Canvas LMS
 ## The Vulnerability
 The XSS Vulnerability, detailed at [CVE-2018-1999024](https://www.cvedetails.com/cve/CVE-2018-1999024/), is due to an outdated version of MathJax with [a vulnerability in the \unicode{} macro](https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html). It allows any malicious user to insert JavaScript into a Rich Text comment using the Rich Text editor; the user simply puts JavaScript into a \unicode{} tag and posts it. The wrapper to write a hiddent XSS script is as follows:
@@ -16,34 +17,58 @@ On Canvas LMS, XSS can be used to retreive an Access Token with which a **malici
 The malicious server here logs a victim's developer key and deletes all their courses. However, once the attack is done, the owner of the server could do anything with the victim's account at any time, such as changing grades or serving this XSS to students. This attack highlights only a fraction of the total possible damage of the attack; in a worst-case scenario, one attacker could use victims to serve the same XSS to their peers and teachers, resulting in the attacker having widespread, undetected and infinite control of hundreds to thousands of accounts in a Canvas LMS system.
 The steps of this attack specifically are as follows:
 1. Victim (in this case, teacher) creates a discussion, journal or other type of assignment using the rich text editor. In this example, it is a discussion.
-![Step 1](photos/0.jpg)
-3. Attacker's account:
-![Step 2](photos/1.jpg)
+
+  ![Step 1](photos/0.jpg)
+
+2. Attacker's account:
+
+  ![Step 2](photos/1.jpg)
+
 3. Attacker opens the discussion.
-![Step 3](photos/2.jpg)
+
+  ![Step 3](photos/2.jpg)
+
 4. Attacker clicks "Reply".
-![Step 4](photos/3.jpg)
+
+  ![Step 4](photos/3.jpg)
+
 5. Attacker clicks the "Insert Math Equation" button.
-![Step 5](photos/4.jpg)
+
+  ![Step 5](photos/4.jpg)
+
 6. Attacker clicks the "Switch View to Advanced" link.
-![Step 6](photos/5.jpg)
+
+  ![Step 6](photos/5.jpg)
+
 7. Attacker inserts the malicious JavaScript code in the following format: `\phantom{\unicode{<script>/*JavaScript goes here*/</script>}}`
   * The malicious code is documented in [example.txt](example.txt).
-![Step 7](photos/6.jpg)
+
+  ![Step 7](photos/6.jpg)
+  
 8. Attacker clicks "Insert Equation".
-![Step 8](photos/7.jpg)
+
+  ![Step 8](photos/7.jpg)
+
 9. Attacker clicks "Reply".
-![Step 9](photos/8.jpg)
+
+  ![Step 9](photos/8.jpg)
+
 11. Victim's account:
-![Step 10](photos/9.jpg)
+
+  ![Step 10](photos/9.jpg)
+
 10. Victim opens the discussion.
-![Step 11](photos/10.jpg)
+
+  ![Step 11](photos/10.jpg)
+
 At this point, no more interaction is necessary between the attacker and the victim; the JavaScript code automatically sends an Access Token controlling the victim's account to the attacker's server.
 The server then logs the Access Token and uses the Canvas LMS API to do the following:
 1. List the Course ID of every course the victim owns.
 2. Delete every course that the victim owns via Course ID.
 Once this action is finished, a Canvas Admin can restore the course, but all user data is lost permanently. This includes the malicious code that the attacker injected.
+
 ![Result: Courses Deleted](photos/11.jpg)
+
 The result of this attack is an untraceable, devastating attack that doe irreparable damage to a school or teacher's course. All student data is lost. The effects of even this, a relatively tame attack, would be brutal, especially in a situation such as a university course (many universities use Canvas LMS); every assignment or grade in the affected professor's class would be lost forever.
 ## How to solve this
 I propose two solutions:

