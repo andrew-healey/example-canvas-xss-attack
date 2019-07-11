@@ -18,48 +18,48 @@ The malicious server here logs a victim's developer key and deletes all their co
 The steps of this attack specifically are as follows:
 1. Victim (in this case, teacher) creates a discussion, journal or other type of assignment using the rich text editor. In this example, it is a discussion.
 
-  ![Step 1](photos/0.jpg)
+  ![Step 1](photos/0.JPG)
 
 2. Attacker's account:
 
-  ![Step 2](photos/1.jpg)
+  ![Step 2](photos/1.JPG)
 
 3. Attacker opens the discussion.
 
-  ![Step 3](photos/2.jpg)
+  ![Step 3](photos/2.JPG)
 
 4. Attacker clicks "Reply".
 
-  ![Step 4](photos/3.jpg)
+  ![Step 4](photos/3.JPG)
 
 5. Attacker clicks the "Insert Math Equation" button.
 
-  ![Step 5](photos/4.jpg)
+  ![Step 5](photos/4.JPG)
 
 6. Attacker clicks the "Switch View to Advanced" link.
 
-  ![Step 6](photos/5.jpg)
+  ![Step 6](photos/5.JPG)
 
 7. Attacker inserts the malicious JavaScript code in the following format: `\phantom{\unicode{<script>/*JavaScript goes here*/</script>}}`
   * The malicious code is documented in [example.txt](example.txt).
 
-  ![Step 7](photos/6.jpg)
+  ![Step 7](photos/6.JPG)
   
 8. Attacker clicks "Insert Equation".
 
-  ![Step 8](photos/7.jpg)
+  ![Step 8](photos/7.JPG)
 
 9. Attacker clicks "Reply".
 
-  ![Step 9](photos/8.jpg)
+  ![Step 9](photos/8.JPG)
 
 11. Victim's account:
 
-  ![Step 10](photos/9.jpg)
+  ![Step 10](photos/9.JPG)
 
 10. Victim opens the discussion.
 
-  ![Step 11](photos/10.jpg)
+  ![Step 11](photos/10.JPG)
 
 At this point, no more interaction is necessary between the attacker and the victim; the JavaScript code automatically sends an Access Token controlling the victim's account to the attacker's server.
 The server then logs the Access Token and uses the Canvas LMS API to do the following:
@@ -67,7 +67,7 @@ The server then logs the Access Token and uses the Canvas LMS API to do the foll
 2. Delete every course that the victim owns via Course ID.
 Once this action is finished, a Canvas Admin can restore the course, but all user data is lost permanently. This includes the malicious code that the attacker injected.
 
-![Result: Courses Deleted](photos/11.jpg)
+![Result: Courses Deleted](photos/11.JPG)
 
 The result of this attack is an untraceable, devastating attack that doe irreparable damage to a school or teacher's course. All student data is lost. The effects of even this, a relatively tame attack, would be brutal, especially in a situation such as a university course (many universities use Canvas LMS); every assignment or grade in the affected professor's class would be lost forever.
 ## How to solve this
