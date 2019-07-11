@@ -1,3 +1,4 @@
+# __Full credit to [pie314159265](https://github.com/pie314159265) for finding the original vulnerability in Canvas__
 [Link to Repo](https://github.com/Sesamestrong/example-canvas-xss-attack)
 # Example XSS (Cross Site Scripting) Attack on Instructure's Canvas LMS
 ## The Vulnerability
